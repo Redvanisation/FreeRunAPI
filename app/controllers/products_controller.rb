@@ -16,6 +16,8 @@ class ProductsController < ApplicationController
 
   # POST /products
   def create
+    return unless current_user.admin
+
     @product = Product.new(product_params)
 
     if @product.save

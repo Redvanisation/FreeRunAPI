@@ -1,5 +1,9 @@
-# FactoryBot.define do
-#   factory :post do
-#     tags { 'tech' }
-#   end
-# end
+FactoryBot.define do
+  factory :user do
+    sequence(:id) { |n| n }
+    sequence(:username) { |n| "User-#{n}" }
+    sequence(:email) { |n| "User-#{n}@example.com" }
+    password { 'password' }
+    address { '12 some street city' }
+  end
+end

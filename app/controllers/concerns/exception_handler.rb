@@ -39,8 +39,8 @@ module ExceptionHandler
   end
 
   # JSON response with message; Status code 401 - Unauthorized
-  def four_zero_one(e)
-    render json: { message: e.message }, status: :invalid_token
+  def four_zero_one(eee)
+    render json: { message: eee.message }, status: :invalid_token
   end
 
    # JSON response with message; Status code 401 - Unauthorized
