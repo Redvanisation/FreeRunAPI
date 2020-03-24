@@ -10,16 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_23_215055) do
+ActiveRecord::Schema.define(version: 2020_03_24_152616) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "product_id"
     t.integer "total"
     t.boolean "paid"
     t.boolean "delivered"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "orders_products", force: :cascade do |t|
+    t.integer "order_id"
+    t.integer "product_id"
+    t.index ["order_id", "product_id"], name: "index_orders_products_on_order_id_and_product_id", unique: true
   end
 
   create_table "products", force: :cascade do |t|
