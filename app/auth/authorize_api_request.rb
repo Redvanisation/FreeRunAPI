@@ -1,6 +1,5 @@
 class AuthorizeApiRequest
   prepend SimpleCommand
-  require_relative '../../lib/json_web_token.rb'
 
   def initialize(headers = {})
     @headers = headers

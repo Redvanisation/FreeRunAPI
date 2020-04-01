@@ -5,3 +5,48 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+user1 = User.first || User.create(username: 'red' , email: 'red@red.com', password: 'password', address: '111 the street');
+
+user2 = User.second || User.create(username: 'test' , email: 'test@test.com', password: 'password', address: '222 test avenue');
+
+
+products_arr = [
+                  {
+                    name: "Product one",
+                    description: "lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum",
+                    price: 100,
+                    stock: 2,
+                    image: "fdskfhsdjfjsfjfs",
+                    category: "Running"
+                  },
+                  {
+                    name: "Product two",
+                    description: "lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum",
+                    price: 200,
+                    stock: 1,
+                    image: "l;jvghjsdodfajshdfakjd",
+                    category: "Swimming"
+                  },
+                  {
+                    name: "Product three",
+                    description: "lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum",
+                    price: 400,
+                    stock: 5,
+                    image: "tivhccivjhygvirgrj",
+                    category: "Clothing"
+                  },
+                  {
+                    name: "Product four",
+                    description: "lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum",
+                    price: 150,
+                    stock: 10,
+                    image: "oovucgyvxgvcxvoxvx",
+                    category: "Other"
+                  }
+            ]
+
+
+products_arr.each do |p|
+  Product.create(p)
+end
