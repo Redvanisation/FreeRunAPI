@@ -16,14 +16,17 @@ class ProductsController < ApplicationController
 
   # POST /products
   def create
-    return unless current_user.admin
+    if current_user.admin
 
-    @product = Product.new(product_params)
+      @product = Product.new(product_params)
 
-    if @product.save
-      render json: @product, status: :created, location: @product
+      if @product.save
+        render json: @product, status: :created, location: @product
+      else
+        render json: @product.errors, status: :unprocessable_entity
+      end
     else
-      render json: @product.errors, status: :unprocessable_entity
+      render json: { message: "You are unauthorized to add products", status: 401 }
     end
   end
 

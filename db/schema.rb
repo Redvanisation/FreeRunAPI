@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(version: 2020_03_24_152616) do
     t.text "description"
     t.integer "price"
     t.string "image"
-    t.integer "quantity"
     t.string "category"
+    t.integer "stock"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

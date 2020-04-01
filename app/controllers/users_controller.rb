@@ -18,19 +18,17 @@ class UsersController < ApplicationController
   def authenticate(email, password)
     command = AuthenticateUser.call(email, password)
 
+
     if command.success?
       render json: {
-        access_token: command.result,
-        message: 'Login successful'
+        current_user: email,
+        message: 'Login successful',
+        access_token: command.result
       }
     else
       render json: { error: command.errors }, status: :unauthorized
     end
   end
-
-  # def test
-  #   render json: { message: 'working!!!!' }
-  # end
 
   private
 
