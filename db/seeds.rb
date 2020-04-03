@@ -17,7 +17,6 @@ products_arr = [
                     description: "lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum",
                     price: 100,
                     stock: 2,
-                    image: "fdskfhsdjfjsfjfs",
                     category: "Running"
                   },
                   {
@@ -25,7 +24,6 @@ products_arr = [
                     description: "lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum",
                     price: 200,
                     stock: 1,
-                    image: "l;jvghjsdodfajshdfakjd",
                     category: "Swimming"
                   },
                   {
@@ -33,7 +31,6 @@ products_arr = [
                     description: "lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum",
                     price: 400,
                     stock: 5,
-                    image: "tivhccivjhygvirgrj",
                     category: "Clothing"
                   },
                   {
@@ -41,7 +38,6 @@ products_arr = [
                     description: "lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum",
                     price: 150,
                     stock: 10,
-                    image: "oovucgyvxgvcxvoxvx",
                     category: "Other"
                   }
             ]
