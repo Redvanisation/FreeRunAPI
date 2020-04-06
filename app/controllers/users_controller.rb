@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate_request, only: [:login, :register]
+  # skip_before_action :authenticate_request, only: [:login, :register]
 
   def register
     @user = User.create(user_params)
@@ -17,11 +17,11 @@ class UsersController < ApplicationController
 
   def authenticate(email, password)
     command = AuthenticateUser.call(email, password)
-
+    user = User.find_by_email(email)
 
     if command.success?
       render json: {
-        current_user: email,
+        current_user: user,
         message: 'Login successful',
         access_token: command.result
       }

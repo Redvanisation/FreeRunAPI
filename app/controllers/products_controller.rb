@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :update, :destroy]
-  skip_before_action :authenticate_request, only: [:show, :index]
+  before_action :not_admin?, only: [:update, :destroy]
+  skip_before_action :authenticate_request, only: [:show, :index, :create]
 
   # GET /products
   def index
@@ -14,20 +15,17 @@ class ProductsController < ApplicationController
     render json: @product
   end
 
+  def new
+    @product = Product.new
+  end
+
   # POST /products
   def create
-    if current_user.admin
-
-      @product = Product.new(product_params)
-
-      if @product.save
+      if CreateProductService.new(@product, product_params).call
         render json: @product, status: :created, location: @product
       else
         render json: @product.errors, status: :unprocessable_entity
       end
-    else
-      render json: { message: "You are unauthorized to add products", status: 401 }
-    end
   end
 
   # PATCH/PUT /products/1
@@ -52,6 +50,10 @@ class ProductsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def product_params
-      params.permit(:name, :description, :price, :image, :quantity, :category)
+      params.permit(:name, :description, :price, :image, :stock, :category)
+    end
+
+    def not_admin?
+      render json: { message: 'You are unauthorized to add products', status: 401 } unless current_user.admin
     end
 end
