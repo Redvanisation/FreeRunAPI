@@ -6,5 +6,5 @@ class Product < ApplicationRecord
   has_one_attached :image
   
 
-  validates_presence_of :name, :description, :price, :stock, :category
+  validates_presence_of :name, :description, :image, :price, :stock, :category
 end

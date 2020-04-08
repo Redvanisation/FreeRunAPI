@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :update, :destroy]
-  before_action :not_admin?, only: [:update, :destroy]
-  skip_before_action :authenticate_request, only: [:show, :index, :create]
+  before_action :not_admin?, only: [:destroy]
+  skip_before_action :authenticate_request, only: [:show, :index, :create, :update]
 
   # GET /products
   def index
@@ -31,6 +31,7 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   def update
     if @product.update(product_params)
+      # debugger
       render json: @product
     else
       render json: @product.errors, status: :unprocessable_entity

@@ -12,6 +12,7 @@ gem 'puma', '~> 4.1'
 # gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
+gem 'pg'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -35,7 +36,7 @@ end
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
-  gem 'sqlite3', '~> 1.4'
+  # gem 'sqlite3', '~> 1.4'
   gem 'rspec-rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -48,9 +49,6 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-group :production do
-  gem 'pg'
-end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
