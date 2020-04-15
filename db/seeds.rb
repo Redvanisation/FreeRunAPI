@@ -6,9 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-user1 = User.first || User.create(username: 'red' , email: 'red@red.com', password: 'password', address: '111 the street');
+user1 = User.first || User.create(username: 'red' , email: 'red@red.com', password: 'password', address: '111 the street', admin: true);
 
-user2 = User.second || User.create(username: 'test' , email: 'test@test.com', password: 'password', address: '222 test avenue');
+user2 = User.second || User.create(username: 'test' , email: 'test@test.com', password: 'password', address: '222 test avenue', admin: false);
 
 
 products_arr = [

@@ -1,8 +1,8 @@
 class ProductsController < ApplicationController
-  # before_action :set_product, only: [:show, :update, :destroy]
-  # before_action :not_admin?, only: [:destroy]
+  before_action :set_product, only: [:show, :update, :destroy]
+  before_action :not_admin?, only: [:create, :update, :destroy]
   # skip_before_action :authenticate_request, only: [:show, :create, :update]
-  before_action :authenticate_user, only: [:index, :create, :update, :destroy]
+  before_action :authenticate_user, only: [:index, :create, :destroy]
 
   # GET /products
   def index
@@ -17,6 +17,7 @@ class ProductsController < ApplicationController
 
   # POST /products
   def create
+    # debugger
       if CreateProductService.new(@product, product_params).call
         render json: @product, status: :created, location: @product
       else
@@ -51,6 +52,7 @@ class ProductsController < ApplicationController
     end
 
     def not_admin?
-      render json: { message: 'You are unauthorized to add products', status: 401 } unless current_user.admin
+      @current_user = User.find_by_email(params[:user])
+      render json: { message: 'You are unauthorized to add/delete or update products'}, status: 401 unless @current_user && @current_user.admin
     end
 end
