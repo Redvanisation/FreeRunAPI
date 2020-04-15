@@ -1,18 +1,14 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :update, :destroy]
-  before_action :not_admin?, only: [:destroy]
-  skip_before_action :authenticate_request, only: [:show, :index, :create, :update]
+  # before_action :set_product, only: [:show, :update, :destroy]
+  # before_action :not_admin?, only: [:destroy]
+  # skip_before_action :authenticate_request, only: [:show, :create, :update]
+  before_action :authenticate_user, only: [:index, :create, :update, :destroy]
 
   # GET /products
   def index
     @products = Product.all.with_attached_image
 
     render json: @products
-  end
-
-  # GET /products/1
-  def show
-    render json: @product
   end
 
   def new
