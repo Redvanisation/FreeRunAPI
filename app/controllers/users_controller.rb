@@ -18,10 +18,9 @@ class UsersController < ApplicationController
       created_jwt = command.result
       cookies.signed[:jwt] = {
         value:  created_jwt,
-        httponly: true,
-        expires: 1.hour.from_now
-      }
-      render json: { email: user.email, admin: user.admin }
+        httponly: true
+        }
+      render json: { username: user.username, email: user.email, admin: user.admin }
     else
       render json: {
         error: 'Username or password incorrect'
