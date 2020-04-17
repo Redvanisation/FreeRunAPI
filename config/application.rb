@@ -26,7 +26,7 @@ module FreeRunApi
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'localhost:3000', 'localhost:3001', 'objective-payne-c9a208.netlify.app'
+        origins '*',
         resource '*', 
         :headers => :any, 
         :methods => [:get, :post, :put, :patch, :delete, :options, :head],
