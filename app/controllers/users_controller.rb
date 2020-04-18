@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate_cookie, only: [:create]
+  before_action except: [:create] do 
+    authenticate_cookie
+  end
 
   def create
     @user = User.new(user_params)

@@ -1,6 +1,4 @@
-class ApplicationController < ActionController::API
-  # require_relative '../../lib/core_modules/json_web_tokens.rb'
-  
+class ApplicationController < ActionController::API  
   include ActionController::Cookies
 
   def authenticate_cookie
