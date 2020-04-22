@@ -2,20 +2,22 @@ class WishlistController < ApplicationController
   before_action :logged_in_user
 
   def index
-    render json: @current_user.fav_products if @current_user
+    render json: @current_user.wished_products if @current_user
   end
 
   def create
-    if @current_user.fav_products << params[:product]
-      render json: @current_user.fav_products, status: :created
+    # debugger
+    @wished_product = Product.find(params[:wished_product_id])
+    @current_user.wished_products << @wished_product
+    if @current_user.wished_products
+      render json: @current_user.wished_products, status: :created
     else
       render json: :error, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @product = @current_user.fav_products.find(params[:id])
-    @current_user.fav_products[@product.id].destroy
+    @current_user.wished_products.delete(params[:wished_product_id])
   end
 
   private
@@ -26,6 +28,7 @@ class WishlistController < ApplicationController
   end
 
   def wishlist_params
-    params.permit(:id, product: [])
+    # debugger
+    params.permit(:user_id, :wished_product_id)
   end
 end
