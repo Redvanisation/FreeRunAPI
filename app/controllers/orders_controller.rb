@@ -1,24 +1,28 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :update, :destroy]
-  before_action :authenticate_user, only: [:index, :create, :update, :destroy]
+  before_action :logged_in_user
 
   # GET /orders
   def index
-    @orders = Order.all
+    # debugger
+    @orders = @current_user.orders
 
     render json: @orders
   end
 
   # GET /orders/1
   def show
-    render json: @order
+    render json: { order: @order, products: @order.products }
   end
 
   # POST /orders
   def create
+
+
     @order = Order.new(order_params)
 
     if @order.save
+      # debugger
       render json: @order, status: :created, location: @order
     else
       render json: @order.errors, status: :unprocessable_entity
@@ -47,6 +51,11 @@ class OrdersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def order_params
-      params.permit(:user_id, :product_id, :total, :paid, :delivered)
+      params.permit(:user_id, :total, :paid, :delivered, product_ids: [])
+    end
+
+    def logged_in_user
+      # debugger
+      return @current_user = User.find(params[:user_id])
     end
 end

@@ -19,13 +19,14 @@ gem 'pg'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'rack-cors', '~> 0.4.1'
 gem 'jwt'
-gem 'rack-cors', '~> 1.0.5'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-gem 'simple_command', '~> 0.1.0'
+# gem 'simple_command', '~> 0.1.0'
 gem 'active_model_serializers'
 gem "aws-sdk-s3", require: false
+gem 'hirb'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'

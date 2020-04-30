@@ -1,19 +1,22 @@
-class ApplicationController < ActionController::API
+class ApplicationController < ActionController::API  
   include ActionController::Cookies
-  before_action :authenticate_user
-  # before_action :authenticate_request
-  # attr_reader :current_user
-  
-  include ExceptionHandler
 
-
-  private
-    # def authenticate_request
-    #   @current_user = AuthorizeApiRequest.call(request.headers).result
-    #   render json: { error: 'Not Authorized' }, status: 401 unless @current_user
-    # end
-    def authenticate_user
-      jwt = cookies.signed[:jwt]
-      JsonWebToken.decode(jwt)
+  def authenticate_cookie
+    token = cookies.signed[:jwt]
+    decoded_token = CoreModules::JsonWebToken.decode(token)
+    if decoded_token
+      user = User.find_by(id: decoded_token["user_id"])
     end
+    if user then return true else render json: {status: 'unauthorized', code: 401} end
+  end
+
+  def current_user
+    token = cookies.signed[:jwt]
+    decoded_token = CoreModules::JsonWebToken.decode(token)
+    if decoded_token
+      user = User.find_by(id: decoded_token["user_id"])
+    end
+    if user then return user else return false end
+  end
+
 end
